@@ -1,1 +1,23 @@
+#Regression for VBMFXvVFINX
 
+#Read file 
+Equities <- read.csv(file = "C:/Users/15109/Desktop/Financial Research (Andrey)/Index_Equity_Data/VBMFXvVFINX/Index_Equity.csv")
+
+#For Loop for Linear Regression Summary 
+
+T = 36 #number of months in 3 year period (36 Months/3 year period)
+TOTAL = nrow(Equities) #row number of data points (360 Months/10 year period)
+N = TOTAL/T
+
+for(period in 1:N){
+  
+  time1 = T*(period-1)+1
+  time2 = T*period
+  VBMFX = Equities[time1:time2,2] 
+  VFINX = Equities[time1:time2,3] 
+  
+  VBMFXvVFINX = lm(VBMFX~VFINX)
+  print(summary(VBMFXvVFINX))
+  
+  
+}
